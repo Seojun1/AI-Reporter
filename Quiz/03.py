@@ -1,3 +1,5 @@
+# 하나의 문장만을 위한 도전문제3번 ( 하나의 문장만 해당되기 때문에 효율성이 낮다 )
+
 import tensorflow as tf
 import pandas as pd
 import numpy as np
@@ -11,18 +13,23 @@ tokenizer = tf.keras.preprocessing.text.Tokenizer()
 tokenizer.fit_on_texts(titles)
 # print(tokenizer.word_index)
 
-x = [] # 최종 x 배열 생성 (2차원 배열)
-xx = [] # 2차원 배열에 append하기 위한 중간다리 배열
-
 # sequence -> 수열 / 어떤 수의 나열로 바꿔서 표현해주는 것
-sequence = tokenizer.texts_to_sequences(titles)
-# for l in range(len(sequence)):
-#         q = sequence[:l]
-#         print(q)
-        # for i in range(len(q)):
-        #         xx.append(sequence[i])
-        #         x.append(xx.copy())
-q = sequence[:1]
-print(q)
-# print(x)
-# print(sequence[1:]) # y값
+sequence = tokenizer.texts_to_sequences([titles[0]])[0]
+# print(sequence)
+
+x = []
+xx = []
+
+for i in range(len(sequence)):
+    b = np.array(
+        [
+            x.append(sequence[i])
+        ]
+    )
+    # 배열 자료형 --> 배열을 복사할때 append를 사용하면 참조복사(최종 결괏값만 복사)를 하기 때문에 발생한 문제를 copy로 사용하면 해결되는 문제였다.
+    xx.append(x.copy())
+print('x값 : ', xx)
+
+# y 값
+y = sequence[1:]
+print('y값 : ', y)
