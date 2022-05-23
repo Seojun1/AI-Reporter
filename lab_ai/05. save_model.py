@@ -11,4 +11,4 @@ model = tf.keras.models.Sequential([
 if not os.path.exists('../models'):
     os.mkdir('../models')
 
-model.save('../models/softmax.h5')
+model.save('../models/sum_softmax.h5')
